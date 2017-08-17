@@ -1,0 +1,56 @@
+- var revealLocation = 'bower_components/reveal.js/'
+- var titleData = { title: "Zephir", subtitle: "Packaging your own library as a C Extension", author: "Paul Scarrone", twitter: "@PaulSCoder", email: "paul@savvysoftworks.com" }
+doctype html
+html(lang="en")
+
+  include ./shared/slide_mixins
+
+  include ./shared/head
+
+  link(rel='external' type='text/html' src="./shared/head.jade")
+
+  body
+    .reveal
+      .slides
+        +titleSlide(titleData)
+        +ulSlide("Zephir", [
+          "Type system: dynamic/static",
+          "Memory safety: no direct memory management",
+          "Compilation model: AOT",
+          "Memory model: task-local garbage collection"
+        ])
+        +slideGroup()
+          +bigTitleSlide("AOT vs. JIT")
+            p Possible false dilemma?
+          +littleTitleSlide("Ahead of Time")
+            img(src="img/gas-station-sandwich.png")
+          +littleTitleSlide("Just In Time")
+            img(src="img/components-of-sandwich.jpg", width="50%")
+        +ulSlide("Use Cases", [
+          "Obfuscation",
+          "Performance",
+          "Portability"
+        ])
+        +ulSlide("Where Zephir will not help", [
+          "Code that rely on Blocking IO",
+          "Code that has Heavy Churn",
+          "Code that makes calls to PHP source"
+        ])
+        +ulSlide("Syntax", [
+          "Structurally Similar to PHP",
+          "But variables must be declared(types not required)",
+          "All code must live in Classes and be contained by a Namespace"
+        ])
+        +littleTitleSlide("Example")
+          :markdown
+            ```
+                let name = "Paul";
+                var middleInitial = "K"
+            ```
+        +ulSlide("Getting Started", [
+          "Install Zephir and Zephir Parser",
+          "Use the zephir cli to `zephir init <namespace>`",
+          "Build with `zephir build`"
+        ])
+
+    include ./shared/footer
