@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Zephir</title>
+    <meta name="description" content="">
+    <meta name="author" content="Paul Scarrone">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
+    <link id="theme" rel="stylesheet" href="bower_components/reveal.js/css/theme/simple.css">
+    <!-- For syntax highlighting-->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+    <script src="//localhost:35729/livereload.js"></script>
+    <script>var revealLocation = 'bower_components/reveal.js/'</script>
+    <!--if lt IE 9
+    script(src= revealLocation + 'lib/js/html5shiv.js')
+    
+    -->
+    <script>
+      document.write( '<link rel="stylesheet" href="' + revealLocation + 'css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+      if(window.location.search.match( /print-pdf/gi )){
+        document.write('<style>.reveal aside.notes{display:block;font-size:0.4em;}.reveal aside.notes:before{content: "Notes: ";font-weight: bold;}</style>');
+      }
+    </script>
+  </head>
+  <link rel="external" type="text/html" src="./shared/head.jade">
+  <body>
+    <div class="reveal">
+      <div class="slides">
+            <section>
+              <h1>Zephir</h1>
+              <h3>Packaging your own library as a C Extension</h3>
+              <p>
+                <div class="left"><small>Paul Scarrone</small></div>
+                <div class="left"><small class="twitter">@PaulSCoder</small></div>
+                <div class="left"><small class="email">paul@savvysoftworks.com</small></div>
+              </p>
+              <aside class="notes">Title Slide</aside>
+            </section>
+            <section>
+              <h3>Zephir</h3>
+                <ul>
+                  <li>Type system: dynamic/static</li>
+                  <li>Memory safety: no direct memory management</li>
+                  <li>Compilation model: AOT</li>
+                  <li>Memory model: task-local garbage collection</li>
+                </ul>
+            </section>
+            <section>
+                  <section>
+                    <h1>AOT vs. JIT</h1>
+                    <p>Possible false dilemma?</p>
+                  </section>
+                  <section>
+                    <h3>Ahead of Time</h3><img src="img/gas-station-sandwich.png">
+                  </section>
+                  <section>
+                    <h3>Just In Time</h3><img src="img/components-of-sandwich.jpg" width="50%">
+                  </section>
+            </section>
+            <section>
+              <h3>Use Cases</h3>
+                <ul>
+                  <li>Obfuscation</li>
+                  <li>Performance</li>
+                  <li>Portability</li>
+                </ul>
+            </section>
+            <section>
+              <h3>Where Zephir will not help</h3>
+                <ul>
+                  <li>Code that rely on Blocking IO</li>
+                  <li>Code that has Heavy Churn</li>
+                  <li>Code that makes calls to PHP source</li>
+                </ul>
+            </section>
+            <section>
+              <h3>Syntax</h3>
+                <ul>
+                  <li>Structurally Similar to PHP</li>
+                  <li>But variables must be declared(types not required)</li>
+                  <li>All code must live in Classes and be contained by a Namespace</li>
+                </ul>
+            </section>
+            <section>
+              <h3>Example</h3><pre><code>    let name = &quot;Paul&quot;;
+    var middleInitial = &quot;K&quot;
+</code></pre>
+            </section>
+            <section>
+              <h3>Getting Started</h3>
+                <ul>
+                  <li>Install Zephir and Zephir Parser</li>
+                  <li>Use the zephir cli to `zephir init &lt;namespace&gt;`</li>
+                  <li>Build with `zephir build`</li>
+                </ul>
+            </section>
+            <section>
+              <h1>Thanks</h1>
+              <p>https://github.com/ninjapanzer/zephir_intro_talk</p>
+            </section>
+      </div>
+    </div>
+    <script type="text/javascript" src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script type="text/javascript" src="bower_components/reveal.js/js/reveal.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+       Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: 'moon',
+        slideNumber: true,
+        transition: 'concave',
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: revealLocation + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: revealLocation + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: revealLocation + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: revealLocation + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: revealLocation + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+       });
+    </script>
+  </body>
+</html>
